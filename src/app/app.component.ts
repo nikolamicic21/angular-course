@@ -9,10 +9,7 @@ import {Course} from './model/course';
 })
 export class AppComponent {
 
-  courses: any[] = COURSES;
-  coreCourse: any = this.courses[0];
-  rxjsCourse: any = this.courses[1];
-  ngrxCourse: any = this.courses[2];
+  courses: Course[] = COURSES;
 
   onCourseSelected(course: Course) {
     console.log(`onCourseSelected...`);
