@@ -22,4 +22,16 @@ export class CourseCardComponent implements OnInit {
     console.log(`onViewCourse...`);
     this.courseSelected.emit(this.course);
   }
+
+  cardClasses(): string[] {
+    if (this.course.category === 'BEGINNER') {
+      return ['beginner'];
+    } else {
+      return [];
+    }
+  }
+
+  cardStyles(): { [style: string]: any } {
+    return {'background-image': `url(${this.course.iconUrl})`};
+  }
 }
