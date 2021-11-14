@@ -7,9 +7,10 @@
     <div
       class="course-title"
     >
-      {{ index + ' ' + course.description }}
+      {{ (index || '') + ' ' + course.description }}
     </div>
     <img
+      #courseImage
       *ngIf="course.iconUrl; else noImage"
       [src]="course.iconUrl"
       width="300"
