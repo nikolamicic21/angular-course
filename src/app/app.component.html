@@ -6,42 +6,33 @@
     src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
   >
 </div>
-<div class="demo">
-  <h1>{{ coreCourse.description }}</h1>
-  <div>Start Date: {{ startDate | date: 'dd-MMM-yyyy' }}</div>
-  <div>Title: {{ coreCourse.description | uppercase }}</div>
-  <div>Price: {{ price | number: '1.1-2' }}</div>
-  <div>Price with currency: {{ price | currency: 'EUR' }}</div>
-  <div>Rate: {{ rate | percent }}</div>
-  <div>Slice:
-    <ng-container *ngFor="let course of (courses | slice: 0: 2); last as isLast">
-      <span>{{ course.description }}</span>
-      <span *ngIf="!isLast">, </span>
-    </ng-container>
-  </div>
-</div>
-<div
-  class="courses"
->
-  <ng-container *ngFor="let course of courses;
-      index as i;
-      first as isFirst;
-      last as isLast;
-      even as isEven;
-      odd as isOdd;
-      count as c
-    ">
+<div class="courses">
     <course-card
-      [class.is-first]="isFirst"
-      [class.is-last]="isLast"
-      [class.is-even]="isEven"
-      [class.is-odd]="isOdd"
-      (courseSelected)="onCourseSelected($event)"
+      *ngIf="courses[0] as course"
       [course]="course"
-      [index]="i + 1"
-    ></course-card>
-  </ng-container>
-
+      (courseSelected)="onCourseSelected($event)"
+    >
+      <course-image [src]="course.iconUrl"></course-image>
+      <course-image [src]="course.iconUrl"></course-image>
+      <course-image [src]="course.iconUrl"></course-image>
+      <h3>Total Lessons: {{ courses.length }}</h3>
+      <div class="course-description">
+        {{ course.longDescription }}
+      </div>
+      Edit Description: <textarea></textarea>
+    </course-card>
+  <course-card
+    *ngIf="courses[1] as course"
+    [course]="course"
+    (courseSelected)="onCourseSelected($event)"
+  >
+    <img
+      [src]="course.iconUrl"
+      width="300"
+      alt="Angular Logo"
+    >
+    <h3>Total Lessons: {{ courses.length }}</h3>
+  </course-card>
 </div>
 
 
