@@ -7,20 +7,23 @@
   >
 </div>
 <div class="courses">
-    <course-card
-      *ngIf="courses[0] as course"
-      [course]="course"
-      (courseSelected)="onCourseSelected($event)"
-    >
-      <course-image [src]="course.iconUrl"></course-image>
-      <course-image [src]="course.iconUrl"></course-image>
-      <course-image [src]="course.iconUrl"></course-image>
-      <h3>Total Lessons: {{ courses.length }}</h3>
-      <div class="course-description">
-        {{ course.longDescription }}
-      </div>
-      Edit Description: <textarea></textarea>
-    </course-card>
+  <ng-template #blankImage let-courseName="description">
+    <p class="warn">{{ courseName }} has no image yet.</p>
+    <img src="assets/empty-image.png">
+  </ng-template>
+  <course-card
+    *ngIf="courses[0] as course"
+    [course]="course"
+    [noImageTemplate]="blankImage"
+    (courseSelected)="onCourseSelected($event)"
+  >
+    <course-image [src]="course.iconUrl"></course-image>
+    <h3>Total Lessons: {{ courses.length }}</h3>
+    <div class="course-description">
+      {{ course.longDescription }}
+    </div>
+    Edit Description: <textarea></textarea>
+  </course-card>
   <course-card
     *ngIf="courses[1] as course"
     [course]="course"
