@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {COURSES} from '../db-data';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Course} from './model/course';
-import {CourseCardComponent} from './course-card/course-card.component';
-import {HighlightedDirective} from './directives/highlighted.directive';
 import {Observable} from 'rxjs';
+import {CoursesService} from './services/courses.service';
+import {APP_CONFIG_TOKEN, AppConfig} from './config';
 
 @Component({
   selector: 'app-root',
@@ -12,16 +11,22 @@ import {Observable} from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
+  courses$: Observable<Course[]>;
 
-  courses = COURSES;
-
-  constructor() {
-
+  constructor(
+    private coursesService: CoursesService,
+    @Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig
+  ) {
+    console.log(appConfig);
   }
 
   ngOnInit() {
+    this.courses$ = this.coursesService.loadCourses();
   }
 
 
-
+  save(course: Course) {
+    this.coursesService.saveCourse(course)
+      .subscribe(() => console.log('Course Saved!'));
+  }
 }
