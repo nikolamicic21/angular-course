@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Course} from './model/course';
+import {Course} from './courses/model/course';
 import {Observable} from 'rxjs';
-import {CoursesService} from './services/courses.service';
+import {CoursesService} from './courses/services/courses.service';
 import {APP_CONFIG_TOKEN, AppConfig} from './config';
 
 @Component({
