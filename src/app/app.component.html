@@ -7,7 +7,7 @@
 
 <div>
   <div class="courses" *ngIf="(courses$ | async) as courses">
-    <course-card highlighted *ngFor="let course of courses"
+    <course-card highlighted *ngFor="let course of courses | filterByCategory: 'BEGINNER'"
                  (courseChanged)="save($event)"
                  [course]="course">
 
