@@ -1,24 +1,11 @@
-import {
-    AfterContentInit,
-    AfterViewInit,
-    Component,
-    ContentChildren,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    QueryList,
-    ViewEncapsulation
-} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '../model/course';
-import {CourseImageComponent} from '../course-image/course-image.component';
-import {CoursesService} from '../services/courses.service';
 
 @Component({
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseCardComponent implements OnInit {
 
@@ -46,6 +33,7 @@ export class CourseCardComponent implements OnInit {
     }
 
 
-
-
+  onEdit(value: string) {
+    this.course.description = value;
+  }
 }

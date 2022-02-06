@@ -10,20 +10,17 @@ import {APP_CONFIG_TOKEN, AppConfig} from './config';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
   courses$: Observable<Course[]>;
 
   constructor(
     private coursesService: CoursesService,
     @Inject(APP_CONFIG_TOKEN) private appConfig: AppConfig
   ) {
-    console.log(appConfig);
   }
 
   ngOnInit() {
     this.courses$ = this.coursesService.loadCourses();
   }
-
 
   save(course: Course) {
     this.coursesService.saveCourse(course)
