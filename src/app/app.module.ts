@@ -1,18 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CourseCardComponent } from './courses/course-card/course-card.component';
-import { CourseImageComponent } from './courses/course-image/course-image.component';
-import { HighlightedDirective } from './courses/directives/highlighted.directive';
-import { NgxUnlessDirective } from './courses/directives/ngx-unless.directive';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {CoursesModule} from './courses/courses.module';
+import {CourseTitleComponent} from './course-title/course-title.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CourseTitleComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +19,10 @@ import {CoursesModule} from './courses/courses.module';
     CoursesModule
   ],
   providers: [],
+  exports: [
+    CourseTitleComponent
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
